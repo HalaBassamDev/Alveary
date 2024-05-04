@@ -1,4 +1,9 @@
+import 'package:intl/intl.dart';
+
 class variable {
+  static DateTime date = DateTime.now();
+  static DateFormat nowDateformat = DateFormat('E,d,MMM');
+  static String formateddate = nowDateformat.format(date);
   static List<Map<int, List>> employeesAttend = [
     {
       1: [

@@ -1,6 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:splash_screen/app/SignUpPage.dart';
 import 'package:splash_screen/app/portal.dart';
+import 'package:splash_screen/custom.dart';
 import 'package:splash_screen/payment/form.dart';
 
 // ignore: camel_case_types
@@ -14,7 +15,7 @@ class companyCode extends StatefulWidget {
 TextEditingController CompanyCode = TextEditingController();
 GlobalKey<FormState> form_companyc = GlobalKey();
 RegExp companyCodeRegex = RegExp(r'^[a-zA-Z0-9]{3,10}$');
-var _companyCode = '';
+String _companyCode = "";
 
 class _companyCodeState extends State<companyCode> {
   @override
@@ -93,43 +94,22 @@ class _companyCodeState extends State<companyCode> {
           ),
           Form(
             key: form_companyc,
-            child: Container(
-              margin: EdgeInsets.only(right: 15, left: 15),
-              child: TextFormField(
-                onSaved: (value) {
-                  _companyCode = value!;
-                },
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.only(left: 15, bottom: 6),
-                  hintText: 'Company Code',
-                  filled: true,
-                  fillColor: const Color(0xFFD8F2B6),
-                  hintStyle: const TextStyle(
-                    color: Colors.grey,
-                    fontFamily: 'Open',
-                    fontSize: 15,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(color: Color(0xFFD8F2B6), width: 0.1),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  border: InputBorder.none,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(color: Color(0xFFD8F2B6), width: 0.1),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Comapny code field cannot be empty";
-                  } else if (!companyCodeRegex.hasMatch(value)) {
-                    return 'invalid company code';
-                  }
-                  return null;
-                },
-              ),
+            child: CustomWidget1(
+              MyController: CompanyCode,
+              hintText: 'Company Code',
+              onChanged: (value) {
+                setState(() {
+                  _companyCode = value;
+                });
+              },
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "Comapny code field cannot be empty";
+                } else if (!companyCodeRegex.hasMatch(value)) {
+                  return 'invalid company code';
+                }
+                return null;
+              },
             ),
           ),
           Container(
@@ -143,17 +123,17 @@ class _companyCodeState extends State<companyCode> {
                       builder: (context) => const startingPage()));
                 }
               },
-              child: const Text(
-                'Confirm',
-                style: TextStyle(
-                    color: Colors.white, fontFamily: 'OpenSans', fontSize: 15),
-              ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
               minWidth: 380,
               height: 53,
               color: const Color(0xFF034521),
+              child: const Text(
+                'Confirm',
+                style: TextStyle(
+                    color: Colors.white, fontFamily: 'OpenSans', fontSize: 15),
+              ),
             ),
           ),
           Center(
@@ -167,8 +147,8 @@ class _companyCodeState extends State<companyCode> {
                   child: Text("Don't have a subscription?",
                       style: TextStyle(
                         color: Color(0xCC034521),
-                        fontSize: 14,
-                        fontFamily: 'pop1',
+                        fontSize: 13,
+                        fontFamily: 'pop2',
                       )),
                 ),
                 TextButton(
@@ -179,13 +159,13 @@ class _companyCodeState extends State<companyCode> {
                   child: const Text('Register with us',
                       style: TextStyle(
                         color: Color(0xCC034521),
-                        fontSize: 14,
-                        fontFamily: 'pop1',
+                        fontSize: 13,
+                        fontFamily: 'pop2',
                       )),
                 ),
               ],
             ),
-          ))
+          )),
         ],
       ),
     );

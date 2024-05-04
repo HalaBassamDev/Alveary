@@ -1,17 +1,20 @@
 import 'package:intl/intl.dart';
 
-class variable {
-  static var name = 'Emma Joanne';
+class employee {
+  static var name = 'Eman Mohammad';
+  static String jobTitle = "Full Stack Developer";
   static var annul = 8.34;
   static var sick = 12.00;
   static bool start = false;
   static bool end = false;
+  static bool isHR = false;
 
   static bool isCheck = false;
   static String? checkInDate;
   static String? checkInTime;
   static String? checkOutDate;
   static String? checkOutTime;
+  static String? password;
 
   //attendance Report
   static DateTime currentMonth = DateTime.now();
